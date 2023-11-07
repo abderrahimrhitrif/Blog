@@ -25,7 +25,7 @@ export default function CreatePost() {
       data.set('file', files[0]);
 
       try {
-        const response = await fetch(`${process.env.API_URL}/post`, {
+        const response = await fetch(`https://blog-api-seven-murex.vercel.app/post`, {
           method: 'POST',
           body: data,
           credentials: 'include',

@@ -7,7 +7,7 @@ function First() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch(`${process.env.API_URL}/post`)
+    fetch(`https://blog-api-seven-murex.vercel.app/post`)
       .then((response) => response.json())
       .then((postsData) => {
         const shuffledPosts = postsData.sort(() => 0.5 - Math.random());

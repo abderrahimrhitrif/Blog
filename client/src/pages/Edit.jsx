@@ -43,7 +43,7 @@ export default function Edit() {
         if(files?.[0]){
             data.set('file', files?.[0]);
         }
-        const response = await fetch(`${process.env.API_URL}/post`, {
+        const response = await fetch(`https://blog-api-seven-murex.vercel.app/post`, {
             method: 'PUT',
             body: data,
             credentials:'include',

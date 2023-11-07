@@ -11,7 +11,7 @@ function Header() {
   const {setUserInfo, userInfo} = useContext(UserContext);
 
   useEffect(() => {
-    const apiUrl = `${process.env.API_URL}/profile`;
+    const apiUrl = `https://blog-api-seven-murex.vercel.app/profile`;
 
     
 

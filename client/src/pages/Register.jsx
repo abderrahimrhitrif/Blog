@@ -21,7 +21,7 @@ function Register() {
 
     async function register(ev) {
         ev.preventDefault();
-        const response = await fetch(`${process.env.API_URL}/register`, {
+        const response = await fetch(`https://blog-api-seven-murex.vercel.app/register`, {
             method: 'POST',
             body: JSON.stringify({ username, password }),
             headers: { 'Content-Type': 'application/json' }

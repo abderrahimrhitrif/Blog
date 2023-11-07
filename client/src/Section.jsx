@@ -11,7 +11,7 @@ function Section() {
       
 
     useEffect(() => {
-        fetch(`${process.env.API_URL}/post`)
+        fetch(`https://blog-api-seven-murex.vercel.app/post`)
             .then(response => response.json())
             .then(postsData => {
                 setPosts(postsData);
