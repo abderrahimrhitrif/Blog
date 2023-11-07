@@ -1,5 +1,5 @@
 import ReactQuill from "react-quill";
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import 'react-quill/dist/quill.snow.css';
 import "./CreatePost.css";
 import { Navigate } from "react-router-dom";
@@ -10,50 +10,45 @@ export default function CreatePost() {
   const [summary, setSummary] = useState('');
   const [content, setContent] = useState('');
   const [files, setFiles] = useState(null);
-  const [redirect, setRedirect] = useState(false);
+  const [redirect, setRedirect] = useState(false); // Change 'false' to false (boolean).
   const { id } = useParams();
-  const [uploadProgress, setUploadProgress] = useState(0);
-  const [isUploading, setIsUploading] = useState(false);
-  const uploadInputRef = useRef(null);
 
   async function createNewPost(ev) {
     ev.preventDefault();
 
     if (typeof FormData !== 'undefined' && files && files.length > 0) {
+      const selectedFile = files[0];
+
+      if (selectedFile.size > 50000) {
+        console.error('File size exceeds the limit of 50KB');
+        return;
+      }
+
       const data = new FormData();
       data.set('title', title);
       data.set('summary', summary);
       data.set('content', content);
-      data.set('file', files[0]);
+      data.set('file', selectedFile);
 
       try {
-        setIsUploading(true); // Start uploading
         const response = await fetch(`https://blog-api-seven-murex.vercel.app/post`, {
           method: 'POST',
           body: data,
           credentials: 'include',
         });
 
-        if (response.ok) {
-          setUploadProgress(100); // Upload completed
-          setRedirect(true);
-        } else {
-          console.error(await response.text());
-        }
+        console.log(await response.json());
 
-        setIsUploading(false); // Stop uploading
+        if (response.ok) {
+          setRedirect(true);
+        }
       } catch (error) {
         console.error(error);
-        setIsUploading(false); // Stop uploading in case of an error
       }
     } else {
       console.error('No file selected');
     }
   }
-
-  const handleFileInputChange = (ev) => {
-    setFiles(ev.target.files);
-  };
 
   const modules = {
     toolbar: [
@@ -86,25 +81,9 @@ export default function CreatePost() {
           <input className="mb-4" type="text" placeholder={'Summary'} value={summary} onChange={ev => setSummary(ev.target.value)} />
         </div>
       </div>
-      <input
-        ref={uploadInputRef}
-        className="mb-4"
-        type="file"
-        name=""
-        id=""
-        onChange={handleFileInputChange}
-        disabled={isUploading}
-      />
-      {isUploading && (
-        <div>
-          <progress value={uploadProgress} max="100"></progress>
-          <p>Uploading: {uploadProgress}%</p>
-        </div>
-      )}
+      <input className="mb-4" type="file" name="" id="" onChange={ev => setFiles(ev.target.files)} />
       <ReactQuill value={content} modules={modules} formats={formats} onChange={newValue => setContent(newValue)} />
-      <button className="mt-4" type="submit" disabled={isUploading}>
-        {isUploading ? 'Uploading...' : 'Create post'}
-      </button>
+      <button className="mt-4">Create post</button>
     </form>
   );
 }
