@@ -35,12 +35,12 @@ admin.initializeApp({
 const storage = admin.storage().bucket();
 
 app.use((_, res, next) => {
-  res.set('Access-Control-Allow-Origin', "https://blog-client-ebon.vercel.app/");
+  res.set('Access-Control-Allow-Origin', "https://blog-client-ebon.vercel.app");
   res.set('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS');
   res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   return next();
 });
-app.use(cors({ credentials: true, origin: 'https://blog-client-ebon.vercel.app/' }));
+app.use(cors({ credentials: true, origin: 'https://blog-client-ebon.vercel.app' }));
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads'))
