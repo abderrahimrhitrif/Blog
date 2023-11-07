@@ -23,7 +23,7 @@ function Login() {
     const handleLogin = async (ev) => {
         ev.preventDefault();
         try {
-            const response = await fetch(`${process.env.API_URL}/login`, {
+            const response = await fetch("https://blog-api-seven-murex.vercel.app/login", {
                 method: 'POST',
                 body: JSON.stringify({ username, password }), // Updated variable name
                 headers: { 'Content-Type': 'application/json' },
@@ -40,7 +40,6 @@ function Login() {
                 
                 console.log('Login successful');
             } else {
-                // Failed login
                 setLoginError('Invalid username or password'); // Updated error message
             }
             

@@ -12,7 +12,7 @@ export default function Post() {
     const { userInfo } = useContext(UserContext);
 
     useEffect(() => {
-        fetch(`https://blog-api-seven-murex.vercel.app/post`)
+        fetch('https://blog-api-seven-murex.vercel.app/post/')
             .then(response => response.json())
             .then(postsData => {
                 setPosts(postsData);
