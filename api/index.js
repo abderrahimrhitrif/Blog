@@ -34,13 +34,16 @@ admin.initializeApp({
 });
 const storage = admin.storage().bucket();
 
-app.use((_, res, next) => {
-  res.set('Access-Control-Allow-Origin', 'http://localhost:5173');
-  res.set('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS');
-  res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  return next();
-});
-app.use(cors({ credentials: true, origin: 'http://localhost:5173' }));
+const allowedOrigin = 'https://blog-client-ebon.vercel.app/'; // Replace with your Vercel URL
+
+
+const corsOptions = {
+  origin: allowedOrigin,
+  credentials: true, // Enable credentials (cookies)
+};
+
+app.use(cors(corsOptions));
+
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads'))
