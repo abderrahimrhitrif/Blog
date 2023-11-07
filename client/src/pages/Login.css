@@ -1,0 +1,11 @@
+.login{
+    max-width: 250px;
+    margin-top: 15%;
+}
+.login input{
+    margin-bottom: 25px;
+    
+}
+.form-check{
+    padding-left: 0;
+}

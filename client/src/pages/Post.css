@@ -1,0 +1,40 @@
+
+.post-image{
+    max-width: 80vh;
+    min-width: 100%;
+    max-height:200px;
+    min-height: 300px;
+    object-fit: cover;
+    padding-top: 1rem;
+
+}
+.main-post{
+    border-right: 1px solid rgb(54, 54, 54);
+}
+
+.title{
+    padding-bottom: 0px;
+    margin: 0px;
+
+    font-weight: bolder;
+    color: rgb(2, 2, 24);
+    text-align: center;
+}
+
+.main-info{
+    font-size: medium;
+    text-align: center;
+    margin-bottom:10px ;
+}
+
+.content p{
+    font-size: larger;
+    margin: 0;
+    text-indent: 20px;
+}
+
+@media (max-width: 992px) {
+    .main-post{
+        border-right: 0;
+    }
+}
