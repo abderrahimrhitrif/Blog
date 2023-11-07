@@ -34,7 +34,7 @@ admin.initializeApp({
 });
 const storage = admin.storage().bucket();
 
-app.use(cors({ origin: '*' }));
+app.use(cors({ origin: 'https://blog-client-ebon.vercel.app' }));
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads'))
