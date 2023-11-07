@@ -10,7 +10,8 @@ export default function CreatePost() {
   const [summary, setSummary] = useState('');
   const [content, setContent] = useState('');
   const [files, setFiles] = useState(null);
-  const [redirect, setRedirect] = useState(false); // Change 'false' to false (boolean).
+  const [redirect, setRedirect] = useState(false);
+  const [isLarge, setIsLarge] = useState(false); // Change 'false' to false (boolean).
   const { id } = useParams();
 
   async function createNewPost(ev) {
@@ -21,6 +22,7 @@ export default function CreatePost() {
 
       if (selectedFile.size > 50000) {
         console.error('File size exceeds the limit of 50KB');
+        setIsLarge(true);
         return;
       }
 
@@ -82,6 +84,7 @@ export default function CreatePost() {
         </div>
       </div>
       <input className="mb-4" type="file" name="" id="" onChange={ev => setFiles(ev.target.files)} />
+      {isLarge && <p className="text-danger">File size is too large. Please select a file under 50KB.</p>}
       <ReactQuill value={content} modules={modules} formats={formats} onChange={newValue => setContent(newValue)} />
       <button className="mt-4">Create post</button>
     </form>
