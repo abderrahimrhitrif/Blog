@@ -12,7 +12,7 @@ export default function Post() {
     const { userInfo } = useContext(UserContext);
 
     useEffect(() => {
-        fetch('http://localhost:4000/post')
+        fetch(`${process.env.API_URL}/post`)
             .then(response => response.json())
             .then(postsData => {
                 setPosts(postsData);
@@ -23,7 +23,7 @@ export default function Post() {
     }, [id]);
 
     useEffect(() => {
-        fetch(`http://localhost:4000/post/${id}`)
+        fetch(`${process.env.API_URL}/post/${id}`)
             .then(response => {
                 response.json().then(postInfo => {
                     setPostInfo(postInfo);

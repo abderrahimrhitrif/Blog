@@ -7,7 +7,7 @@ function First() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:4000/post')
+    fetch(`${process.env.API_URL}/post`)
       .then((response) => response.json())
       .then((postsData) => {
         const shuffledPosts = postsData.sort(() => 0.5 - Math.random());

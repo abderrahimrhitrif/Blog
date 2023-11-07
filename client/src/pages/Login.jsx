@@ -23,7 +23,7 @@ function Login() {
     const handleLogin = async (ev) => {
         ev.preventDefault();
         try {
-            const response = await fetch('http://localhost:4000/login', {
+            const response = await fetch(`${process.env.API_URL}/login`, {
                 method: 'POST',
                 body: JSON.stringify({ username, password }), // Updated variable name
                 headers: { 'Content-Type': 'application/json' },

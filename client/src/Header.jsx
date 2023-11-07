@@ -11,7 +11,7 @@ function Header() {
   const {setUserInfo, userInfo} = useContext(UserContext);
 
   useEffect(() => {
-    const apiUrl = 'http://localhost:4000/profile';
+    const apiUrl = `${process.env.API_URL}/profile`;
 
     
 
@@ -34,7 +34,7 @@ function Header() {
   }, []);
 
     function logout() {
-      fetch('http://localhost:4000/logout', {
+      fetch(`${process.env.API_URL}/logout`, {
         credentials: 'include',
         method: 'GET',
       });

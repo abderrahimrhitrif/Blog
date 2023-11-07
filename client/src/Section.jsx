@@ -11,7 +11,7 @@ function Section() {
       
 
     useEffect(() => {
-        fetch('http://localhost:4000/post')
+        fetch(`${process.env.API_URL}/post`)
             .then(response => response.json())
             .then(postsData => {
                 setPosts(postsData);
