@@ -33,8 +33,13 @@ admin.initializeApp({
   storageBucket: "zenblog-8e899.appspot.com",
 });
 const storage = admin.storage().bucket();
-
-app.use(cors({ origin: 'https://zenblogar.vercel.app' }));
+const corsOptions = {
+    origin: 'https://zenblogar.vercel.app',
+    credentials: true, // Enable credentials (cookies)
+  };
+  
+  app.use(cors(corsOptions));
+  
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads'))
