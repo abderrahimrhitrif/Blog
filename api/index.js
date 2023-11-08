@@ -50,7 +50,18 @@ const secret = "sQNjfEnf4dxNvYqc4qd5dz45";
 
 mongoose.connect("mongodb+srv://abdo:oU1EuzHLlzlMW47q@cluster0.2vojdpr.mongodb.net/?retryWrites=true&w=majority");
 
-// Rest of your code...
+app.post('/register', async (req, res) => {
+    const { username, password } = req.body;
+    try {
+        const userDoc = await User.create({
+            username,
+            password: bcrypt.hashSync(password, salt),
+        });
+        res.json(userDoc);
+    } catch (e) {
+        res.status(400).json(e);
+    }
+});
 
 
 app.post('/login', async (req, res) => {
