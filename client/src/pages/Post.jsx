@@ -77,7 +77,7 @@ export default function Post() {
                 </p>
                 {userInfo && userInfo.id === postInfo.author._id && (
                     <div className="mx-auto d-flex col-lg">
-                        <Link to={`/edit/${postInfo._id}`} onClick={scrollToTop} className="edit btn btn-primary mx-auto px-4">
+                        <Link to={`/edit/${postInfo._id}`} className="edit btn btn-primary mx-auto px-4">
                             Edit
                         </Link>
                     </div>
@@ -94,11 +94,11 @@ export default function Post() {
 
                 {randomPosts.map((post, index) => (
                     <div className="post" key={post._id}>
-                        <Link to={`/post/${post._id}`}>
+                        <Link to={`/post/${post._id}`} onClick={scrollToTop}>
                         <img src={`https://firebasestorage.googleapis.com/v0/b/zenblog-8e899.appspot.com/o/${post.cover}?alt=media`} alt=""  />
                         </Link>
                         <p className="info text-secondary">{formatDate(post)}</p>
-                        <Link to={`/post/${post._id}`}>
+                        <Link to={`/post/${post._id}`} onClick={scrollToTop}>
                             <h4 className="Titles">{post.title}</h4>
                         </Link>
                     </div>
