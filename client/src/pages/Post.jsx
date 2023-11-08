@@ -10,6 +10,9 @@ export default function Post() {
     const [postInfo, setPostInfo] = useState(null);
     const { id } = useParams();
     const { userInfo } = useContext(UserContext);
+    const scrollToTop = () => {
+        window.scrollTo(0, 0); 
+    };
 
     useEffect(() => {
         fetch('https://blog-api-seven-murex.vercel.app/post/')
@@ -74,7 +77,7 @@ export default function Post() {
                 </p>
                 {userInfo && userInfo.id === postInfo.author._id && (
                     <div className="mx-auto d-flex col-lg">
-                        <Link to={`/edit/${postInfo._id}`} className="edit btn btn-primary mx-auto px-4">
+                        <Link to={`/edit/${postInfo._id}`} onClick={scrollToTop} className="edit btn btn-primary mx-auto px-4">
                             Edit
                         </Link>
                     </div>
